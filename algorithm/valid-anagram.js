@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn96us/
+// https://leetcode-cn.com/problems/valid-anagram/
 
 /**
  * @param {string} s

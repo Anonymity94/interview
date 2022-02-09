@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnr003/
+// https://leetcode-cn.com/problems/implement-strstr/
 
 /**
  * @param {string} haystack

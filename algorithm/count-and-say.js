@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnpvdm/
+// https://leetcode-cn.com/problems/count-and-say/
 
 /**
  * @param {number} n
