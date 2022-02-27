@@ -1,83 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      class Element {
-        constructor(tagName, attributes = {}, children = []) {
-          this.tagName = tagName;
-          this.attributes = attributes;
-          this.children = children;
-        }
 
-        render() {
-          let element = document.createElement(this.tagName);
-          let attributes = this.attributes;
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vdom.js"></script>
+  <script src="./diff.js"></script>
+</head>
 
-          // 添加属性
-          for (let key in attributes) {
-            setAttribute(element, key, attributes[key]);
-          }
+<body>
+  <button id="patch">patch 鏇存柊</button>
+  <script>
+    const vdom1 = element('ul', { id: 'list', }, [
+      element('li', { class: 'chapter' }, ['chapter1']),
+      element('li', { class: 'chapter' }, ['chapter2']),
+      element('li', { class: 'chapter' }, ['chapter3']),
+    ]);
+    console.log('vdom1', vdom1)
+    const html = vdom1.render()
+    renderDom(html, document.body)
 
-          let children = this.children;
-          children.forEach((child) => {
-            let childElement =
-              // 虚拟节点，继续遍历
-              child instanceof Element
-                ? child.render()
-                : // 如果是字符串，直接创建文本节点
-                  document.createTextNode(child);
 
-            // 填充到父节点中
-            element.appendChild(childElement);
-          });
-
-          return element;
-        }
-      }
-
-      function element(tagName, attributes, children) {
-        return new Element(tagName, attributes, children);
-      }
-
-      function renderDom(element, target) {
-        target.appendChild(element);
-      }
-
-      const setAttribute = (node, key, value) => {
-        switch (key) {
-          case 'style':
-            node.style.cssText = value;
-            break;
-          case 'value':
-            let tagName = node.tagName || '';
-            tagName = tagName.toLowerCase();
-            if (tagName === 'input' || tagName === 'textarea') {
-              node.value = value;
-            } else {
-              // 如果节点不是input或textarea，直接使用 setAttribute 设置属性
-              node.setAttribute(key, value);
-            }
-            break;
-          default:
-            node.setAttribute(key, value);
-            break;
-        }
-      };
-
-      const chapterListVDom = element('ul', { id: 'list' }, [
-        element('li', { class: 'chapter' }, ['chapter1']),
-        element('li', { class: 'chapter' }, ['chapter2']),
-        element('li', { class: 'chapter' }, ['chapter3']),
+    document.querySelector('#patch').onclick = function () {
+      console.log(1)
+      const vdom2 = element('ul', { id: 'list2', class: 'list2' }, [
+        element('ol', { class: 'chapter2' }, ['chapter4']),
+        element('li', { class: 'chapter2' }, ['chapter5']),
+        element('li', { class: 'chapter2' }, ['chapter6']),
+        element('li', { class: 'chapter2' }, ['chapter7']),
       ]);
-      console.log(chapterListVDom);
-      const dom = chapterListVDom.render();
-      console.log(dom);
-    </script>
-  </body>
+
+
+      console.log('vdom2', vdom2)
+
+      const patches = diff(vdom1, vdom2);
+      patch(html, patches)
+    }
+  </script>
+</body>
+
 </html>
