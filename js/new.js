@@ -39,3 +39,17 @@ person.sayYourName(); // I am Kevin
 var person2 = objectFactory(Otaku, "Kevin", "18");
 console.log(person2); // Kevin
 person2.sayYourName(); // I am Kevin
+
+const createObj = (Constructor, ...args) => {
+  let obj = {};
+  let res = Constructor.call(obj, ...args);
+  obj.__proto__ = Constructor.prototype;
+
+  const isObj = res !== null && typeof res === "obj";
+  const isFunc = typeof res === "function";
+
+  return isFunc || isObj ? res : obj;
+};
+var person3 = createObj(Otaku, "Kevin", "18");
+console.log(person2); // Kevin
+person2.sayYourName(); // I am Kevin
