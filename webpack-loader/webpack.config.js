@@ -17,6 +17,13 @@ const config = {
               name: 'ssss',
             },
           },
+          {
+            loader: 'path-replace-loader',
+            options: {
+              path: 'origin.js',
+              replacePath: 'origin-replace.js',
+            },
+          },
         ],
       },
     ],
