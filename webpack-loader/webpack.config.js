@@ -1,4 +1,5 @@
 const path = require('path');
+const { FileListPlugin } = require('./plugins/file-list-plugin');
 
 const config = {
   entry: './src/index.js',
@@ -29,6 +30,11 @@ const config = {
       },
     ],
   },
+  plugins: [
+    new FileListPlugin({
+      outputFile: 'my-assets.md',
+    }),
+  ],
   output: {
     filename: '[name]-[chunkhash:8].js',
     path: path.resolve(__dirname, 'dist'),
