@@ -6,6 +6,7 @@ const config = {
   resolveLoader: {
     modules: [path.resolve(__dirname, 'loaders'), 'node_modules'],
   },
+  devtool: 'eval-cheap-module-source-map',
   module: {
     rules: [
       {
