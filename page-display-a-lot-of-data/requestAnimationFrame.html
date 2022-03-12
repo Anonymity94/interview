@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="container"></ul>
+
+  <script>
+    // 直接卡死
+    const containerDom = document.getElementById("container");
+    // 10万条数据
+    const count = 100000;
+    // 每次插入50条
+    const pageSize = 50;
+    const totalPages = Math.round(count / pageSize);
+
+    console.time()
+
+    function loop (page) {
+      if (page >= totalPages) {
+        return
+      }
+
+      requestAnimationFrame(() => {
+        const start = page * pageSize;
+        for (let index = start; index < start + pageSize; index++) {
+          let liDom = document.createElement("li");
+          liDom.innerText = `${index + 1} ~~ ${Math.random() * count}`;
+          containerDom.appendChild(liDom);
+        }
+
+        loop(page + 1)
+      })
+    }
+
+    loop(0)
+
+    console.timeEnd()
+  </script>
+</body>
+
+</html>
