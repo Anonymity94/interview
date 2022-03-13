@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#/home">首页</a></li>
+      <li><a href="#/user">用户中心</a></li>
+      <li><a href="#/login">登录</a></li>
+    </ul>
+
+    <div id="view"></div>
+
+    <script>
+      let viewDom;
+      window.addEventListener('DOMContentLoaded', onLoad);
+      window.addEventListener('hashchange', onHashChange);
+      function onLoad() {
+        viewDom = document.querySelector('#view');
+        onHashChange();
+      }
+
+      function onHashChange() {
+        console.log(location.hash);
+        switch (location.hash) {
+          case '#/home':
+            viewDom.innerHTML = 'home';
+            break;
+          case '#/user':
+            viewDom.innerHTML = '用户中心';
+            break;
+          case '#/login':
+            viewDom.innerHTML = '登录';
+            break;
+          default:
+            viewDom.innerHTML = '404';
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
