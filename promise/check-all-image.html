@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>监听某个dom下的所有img，当全部加载完成后执行某些操作</div>
+    <div id="container">
+      <img />
+      <img />
+      <img />
+    </div>
+
+    <script>
+      window.onload = function () {
+        const imgs = document.querySelectorAll('#container img');
+        const funcs = [];
+        imgs.forEach((img) => {
+          funcs.push(
+            new Promise((resolve, reject) => {
+              img.onload = () => resolve(img);
+              img.onerror = () => reject;
+            })
+          );
+        });
+
+        Promise.allSettled(funcs).then(() => {
+          alert('全部加载完成');
+        });
+      };
+
+      // mock数据
+      const imgs = document.querySelectorAll('#container img');
+
+      setTimeout(() => {
+        imgs[0].src =
+          'https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png';
+      }, 1000);
+      setTimeout(() => {
+        imgs[1].src =
+          'https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png';
+      }, 2000);
+      setTimeout(() => {
+        imgs[2].src =
+          'https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png';
+      }, 3000);
+    </script>
+  </body>
+</html>
