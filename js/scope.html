@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var inner = 'window';
+
+      function say() {
+        console.log(inner);
+        console.log(this.inner);
+      }
+
+      var obj1 = (function () {
+        var inner = '1-1';
+        return {
+          inner: '2-1',
+          say: function () {
+            console.log(inner);
+            console.log(this.inner);
+          },
+        };
+      })();
+
+      var obj2 = (function () {
+        var inner = '2-1';
+        return {
+          inner: '2-2',
+          say: function () {
+            console.log(inner);
+            console.log(this.inner);
+          },
+        };
+      })();
+
+      say();
+      // window
+      // window
+      obj1.say();
+      // 1-1
+      // 2-1
+      obj2.say();
+      // 2-1
+      // 2-2
+      obj1.say = say;
+      obj1.say();
+      console.log(obj1)
+      // window
+      // 2-1
+      obj1.say = obj2.say;
+      obj1.say();
+      // 2-1
+      // 2-1
+    </script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .triangle {
+        width: 0;
+        height: 0;
+        border: 100px solid #000;
+      }
+
+      .top {
+        border-top-color: transparent;
+        border-bottom-color: red;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top: 0;
+      }
+      .right {
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: red;
+        border-right-color: transparent;
+        border-right: 0;
+      }
+      .bottom {
+        border-top-color: red;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom: 0;
+      }
+      .left {
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-right-color: red;
+        border-left: 0;
+      }
+      .left-top {
+        border-bottom-color: transparent;
+        border-left-color: red;
+        border-right: 0;
+        border-top: 0;
+      }
+      .right-top {
+        border-bottom-color: transparent;
+        border-right-color: red;
+        border-left: 0;
+        border-top: 0;
+      }
+      .left-bottom {
+        border-top-color: transparent;
+        border-left-color: red;
+        border-right: 0;
+        border-bottom: 0;
+      }
+      .right-bottom {
+        border-top-color: transparent;
+        border-right-color: red;
+        border-left: 0;
+        border-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="triangle top"></div>
+    <div class="triangle right"></div>
+    <div class="triangle bottom"></div>
+    <div class="triangle left"></div>
+
+    <div class="triangle left-top"></div>
+    <div class="triangle right-top"></div>
+    <div class="triangle left-bottom"></div>
+    <div class="triangle right-bottom"></div>
+  </body>
+</html>
