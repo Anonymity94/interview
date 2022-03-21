@@ -20,3 +20,20 @@ setImmediate(function () {
     console.log("TIMEOUT FIRED");
   }, 0);
 });
+
+// 宏任务
+// script(整体代码)
+// setTimeout
+// setInterval
+// I/O
+// UI交互事件
+// postMessage
+// MessageChannel
+// setImmediate(Node.js 环境)(优先级最小的宏任务)
+
+
+// 微任务
+// Promise.then
+// Object.observe
+// MutationObserver
+// process.nextTick(Node.js 环境)（优先级最高的微任务）
