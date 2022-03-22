@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #header {
+        background-color: aliceblue;
+      }
+      #container {
+        padding-left: 300px;
+        padding-right: 300px;
+        min-height: 200px;
+      }
+      .column {
+        float: left;
+      }
+      #left {
+        width: 300px;
+        /* 让 left 顶上来 */
+        margin-left: -100%;
+        /* 通过定位让 left 在最左边 */
+        position: relative;
+        left: -300px;
+      }
+      #center {
+        width: 100%;
+      }
+      #right {
+        width: 300px;
+        /* 负的自己的宽度 */
+        margin-left: -300px;
+        position: relative;
+        right: -300px;
+      }
+      #footer {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <div id="header">#header</div>
+      <div id="container">
+        <div id="center" class="column">#center</div>
+        <div id="left" class="column">#left</div>
+        <div id="right" class="column">#right</div>
+      </div>
+      <div id="footer">#footer</div>
+    </body>
+  </body>
+</html>
