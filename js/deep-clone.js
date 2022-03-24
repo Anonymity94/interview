@@ -113,21 +113,23 @@ function getInitialValue(target) {
 function cloneOtherType(target, type) {
   const Constructor = target.constructor;
   switch (type) {
-    case '[object Number]':
-    case '[object String]':
-    case '[object Boolean]':
-    case '[object Error]':
-    case '[object Date]':
-    case '[object Regex]':
+    case '[object Number]': // new Number()
+    case '[object String]': // new String()
+    case '[object Boolean]': // new Boolean()
+    case '[object Error]': // new Error()
+    case '[object Date]': // new Date()
+    case '[object Regex]': // new Regex()
       return new Constructor(target);
 
     // Symbol
-    case '[object Symbol]':
+    case '[object Symbol]': // new Symbol()
+      // 拷贝 Symbol 的包装对象的时候，首先要获取到 Symbol 本身的值，然后再用 Object() 包裹后返回
       return Object(Symbol.prototype.valueOf.apply(target));
     // 函数
     case '[object Function]':
-      // TODO
-      return null;
+      // 因为函数本身在哪里定义并不重要，重要的是函数在哪里调用，所以函数类型可以直接返回函数本身
+      // return eval(target.toString());
+      return new Function('return ' + target.toString())();
     default:
       return null;
   }
@@ -209,14 +211,17 @@ const set = new Set();
 set.add('Set1111');
 set.add('Set2222');
 
-const target = {
-  field1: 1,
-  field2: undefined,
-  field3: {
-    child: 'child',
-  },
-  field4: [2, 4, 8],
-  empty: null,
+const obj = {
+  // 基础数据类型
+  // ==========
+  number: 1,
+  string: 'string',
+  boolean: true,
+  undefined: undefined,
+  null: null,
+  bigint: BigInt(1n),
+  // Object
+  // ==============
   map,
   set,
   bool: new Boolean(true),
@@ -224,8 +229,8 @@ const target = {
   str: new String(2),
   symbol: Object(Symbol(1)),
   date: new Date(),
-  reg: /\d+/,
   error: new Error(),
+  reg: /\d+/,
   func1: () => {
     console.log('code秘密花园');
   },
@@ -234,7 +239,7 @@ const target = {
   },
 };
 
-const result = cloneDeep(target);
+const result = cloneDeep(obj);
 
 console.log(target);
 console.log(result);
