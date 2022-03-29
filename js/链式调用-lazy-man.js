@@ -104,3 +104,6 @@ LazyMan('Hank').sleepFirst(5).eat('supper');
 // Wake up after 5
 // Hi, This is Hank!
 // Eat supper~
+
+
+// https://www.jianshu.com/p/f636aa4eb86d
