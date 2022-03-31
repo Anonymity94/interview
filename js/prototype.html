@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    var obj = { name: '张三' }
+    var obj2 = { '职业': '医生' }
+    console.log(obj)
+
+    console.log(Object.getPrototypeOf(obj) === obj.__proto__);
+    console.log(obj.__proto__ === Object.prototype)
+
+    // 原型链继承
+    Object.setPrototypeOf(obj, obj2);
+    console.dir(obj);
+
+    var obj3 = Object.create(obj2)
+    console.log(obj3)
+
+    console.log(obj3.constructor === Object)
+
+  </script>
+</body>
+
+</html>
