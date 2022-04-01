@@ -27,8 +27,6 @@
 
 ## 防御
 
-### 编码
-
 - React 中使用 `textContent`
 - cookie 设置为 `HttpOnly` 防客户端盗用 cookie
 - 不信任用户输入的任何内容，对提交内容进行校验、过滤
