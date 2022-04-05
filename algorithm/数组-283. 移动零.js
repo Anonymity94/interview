@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2ba4i/
+// https://leetcode-cn.com/problems/move-zeroes/
 
 /**
  * @param {number[]} nums
