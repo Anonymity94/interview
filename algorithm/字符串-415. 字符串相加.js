@@ -1,41 +1,40 @@
-// https://leetcode-cn.com/problems/add-strings
-
 /**
  * @param {string} num1
  * @param {string} num2
  * @return {string}
  */
 var addStrings = function (num1, num2) {
+  // 将2个数补齐为长度相同
+  const maxLength = Math.max(num1.length, num2.length);
+  num1 = num1.padStart(maxLength, '0');
+  num2 = num2.padStart(maxLength, '0');
+
+  // 指针
+  let p = maxLength - 1;
+  // 结果
+  let result = '';
   // 进位标识
   let flag = 0;
-  let p1 = num1.length - 1;
-  let p2 = num2.length - 1;
 
-  let result = "";
+  while (p >= 0) {
+    const sum = flag + Number(num1[p]) + Number(num2[p]);
 
-  while (p1 >= 0 || p2 >= 0) {
-    let total = flag;
-    if (p1 >= 0) {
-      total += Number(num1[p1]);
-    }
-    if (p2 >= 0) {
-      total += Number(num2[p2]);
-    }
-    if (total >= 10) {
-      result = String(total - 10) + result;
+    // 判断进位
+    if (sum >= 10) {
+      result = String(sum - 10) + result;
       flag = 1;
     } else {
-      result = String(total) + result;
+      result = String(sum) + result;
       flag = 0;
     }
-    if (p1 !== -1) {
-      p1--;
-    }
-    if (p2 !== -1) {
-      p2--;
-    }
+
+    // 左移
+    p--;
   }
+
+  if (flag === 1) {
+    result = String(flag) + result;
+  }
+
   return result;
 };
-
-addStrings("11", "123");
