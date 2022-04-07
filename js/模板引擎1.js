@@ -1,5 +1,5 @@
 /**
- * @see https://gist.github.com/barretlee/7765587
+ * @see https://barretlee.com/blog/2013/12/03/cb-principle-of-javascript-template/
  * @param {String} tpl
  * @param {*} data
  * @returns
@@ -10,7 +10,7 @@ const tplEngine = function (tpl, data) {
   let cursor = 0;
 
   // 把 for，if，switch 等语句排除在外
-  const regOut = /(for|if|else|switch|case|break|{|})/g;
+  const regOut = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g;
 
   /**
    *
@@ -50,11 +50,11 @@ const tplEngine = function (tpl, data) {
   code += 'return r.join("");';
   console.log(code);
 
-  return new Function(code.replace(/[\r\t\n]/g, '')).call(data);
+  return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 };
 
 var tpl =
-  '<% for(var i = 0; i < posts.length; i++) {' +
+  '<% for(var i = 0; i < this.posts.length; i++) {' +
   'var post = posts[i]; %>' +
   '<% if(!post.expert){ %>' +
   '<span>post is null</span>' +
