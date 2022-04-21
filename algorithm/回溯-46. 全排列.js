@@ -47,3 +47,5 @@ var permute = function (nums) {
 };
 
 console.log(permute([1, 2, 3]));
+
+// https://programmercarl.com/0046.%E5%85%A8%E6%8E%92%E5%88%97.html
