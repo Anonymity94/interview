@@ -1,5 +1,7 @@
 # WebSocket
 
+> [一文吃透 WebSocket 原理 刚面试完，趁热赶紧整理](https://juejin.cn/post/7020964728386093093)
+
 ## 什么是 WebSocket
 
 WebSocket 是一种在单个TCP连接上进行全双工通信的协议。WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据

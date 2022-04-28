@@ -1,5 +1,9 @@
 # 排序
 
+> - [前端排序详解：九大排序策略](https://zhuanlan.zhihu.com/p/414097391)
+> - [[算法总结] 十大排序算法](https://zhuanlan.zhihu.com/p/42586566)
+> - [1.0 十大经典排序算法](https://www.runoob.com/w3cnote/ten-sorting-algorithm.html)
+
 ## 快速排序
 
 ## 冒泡排序
