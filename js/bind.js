@@ -1,8 +1,8 @@
 // https://github.com/mqyqingfeng/Blog/issues/12
 Function.prototype.bind2 = function (context) {
-  if (typeof this !== "function") {
+  if (typeof this !== 'function') {
     throw new Error(
-      "Function.prototype.bind - what is trying to be bound is not callable"
+      'Function.prototype.bind - what is trying to be bound is not callable'
     );
   }
 
@@ -37,8 +37,39 @@ function bar(name, age) {
   };
 }
 
-var fn = bar.bind2(foo, "kevin");
+var fn = bar.bind2(foo, 'kevin');
 console.log(fn(18));
 
-var obj = new fn("18");
+var obj = new fn('18');
 console.log(obj);
+
+Function.prototype.bind3 = function (context) {
+  const me = this;
+  const args = Array.prototype.slice.call(arguments, 1);
+  const F = function () {};
+  F.prototype = this.prototype;
+  const bound = function () {
+    const innerArgs = Array.prototype.slice.call(arguments);
+    const finnalArgs = args.concat(innerArgs);
+    return me.apply(this instanceof F ? this : context || this, finnalArgs);
+  };
+
+  bound.prototype = new F();
+  return bound;
+};
+
+var foo = {
+  value: 1,
+};
+
+function test(name, age) {
+  console.log(this.value);
+  return {
+    value: this.value,
+    name: name,
+    age: age,
+  };
+}
+
+var fn = test.bind3(foo, 'kevin');
+console.log(fn(18));
