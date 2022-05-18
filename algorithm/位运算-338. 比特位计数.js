@@ -1,4 +1,16 @@
 /**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function (n) {
+  let arr = [];
+  for (let i = 0; i <= n; i++) {
+    arr[i] = hammingWeight(i);
+  }
+  return arr;
+};
+
+/**
  * @param {number} n - a positive integer
  * @return {number}
  */
