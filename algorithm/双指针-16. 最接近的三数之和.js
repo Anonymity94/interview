@@ -49,3 +49,26 @@ var threeSumClosest = function (nums, target) {
 
   return ans;
 };
+
+
+var length = 10;
+function fn() {
+  return this.length + 1;
+}
+var obj = {
+  length: 5,
+  test1: function() {
+    return fn();
+  }
+};
+obj.test2 = fn;
+
+var testObj = {
+  length: 20
+}
+
+console.log(obj.test1.call());
+console.log(obj.test1());
+console.log(obj.test1.call(testObj)); // 输出多少？
+console.log(obj.test2.call());
+console.log(obj.test2());
