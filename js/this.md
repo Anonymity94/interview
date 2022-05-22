@@ -517,13 +517,9 @@ person1.obj.foo2.call(person2)(); // person2
 person1.obj.foo2().call(person2); // obj
 ```
 
----
-
-等待更新
-
 ## 第八题
 
-> [函数的扩展-作用域](https://es6.ruanyifeng.com/#docs/function#%E4%BD%9C%E7%94%A8%E5%9F%9F)
+> [函数的扩展-作用域](https://es6.ruanyifeng.com/#docs/function)
 
 ```js
 // 当函数的参数有默认值时, 会形成一个新的作用域, 这个作用域用于保存参数的值（所以不会修改全局的变量）
@@ -533,18 +529,18 @@ function foo(
   x,
   y = function () {
     x = 3;
-    console.log(x);
+    console.log(x); // 3
   }
 ) {
-  console.log(x);
+  console.log(x); // 1
   var x = 2;
-  console.log(x);
+  console.log(x); // 2
   y();
-  console.log(x);
+  console.log(x); // 2
 }
 
 foo(1);
-console.log(x);
+console.log(x); // 0
 ```
 
 ## 第九题
@@ -562,10 +558,44 @@ Object.prototype.b = function () {
 function A() {}
 var c = new A();
 
-A.a();
-A.b();
-c.a();
-c.b();
-Function.b();
-Object.a();
+A.a(); // 报错
+A.b(); // 我是b
+
+// 实例无法访问到 Function
+c.a(); // 报错
+c.b(); // 我是b
+
+// Function.prototype.__proto__ === Object.prototype
+Function.b(); // 我是b
+
+// Object.__proto__ === Function.prototype
+Object.a(); // 我是a
+```
+
+## 第十一题
+
+```js
+function Fn() {
+  this.name = 'xiaoming';
+  this.age = '12';
+}
+
+function Fn1() {
+  this.age = 18;
+}
+
+Fn.prototype.getName = function () {
+  console.log(this.name);
+};
+
+Object.prototype.getAge = function () {
+  console.log(this.age);
+};
+
+let f1 = new Fn();
+f1.getName(); // xiaoming
+f1.getAge(); // 12
+
+let f2 = new Fn1();
+f2.getAge(); // 18
 ```
