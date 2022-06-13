@@ -51,7 +51,7 @@ Function.prototype.bind3 = function (context) {
   const bound = function () {
     const innerArgs = Array.prototype.slice.call(arguments);
     const finnalArgs = args.concat(innerArgs);
-    return me.apply(this instanceof F ? this : context || this, finnalArgs);
+    return me.apply(this instanceof F ? this : context, finnalArgs);
   };
 
   bound.prototype = new F();
